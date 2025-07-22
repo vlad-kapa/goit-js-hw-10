@@ -6,12 +6,14 @@ import SortCss from 'postcss-sort-media-queries';
 
 export default defineConfig(({ command }) => {
   return {
-     base: '/goit-js-hw-10/',
+    base: '/goit-js-hw-10/', // обов'язково для GitHub Pages
+    root: 'src', // основна папка з HTML
     define: {
       [command === 'serve' ? 'global' : '_global']: {},
     },
-    root: 'src',
     build: {
+      outDir: '../dist', // зберігає зібрані файли в dist у корені (а не в src)
+      emptyOutDir: true,
       sourcemap: true,
       rollupOptions: {
         input: glob.sync('./src/*.html'),
@@ -35,12 +37,10 @@ export default defineConfig(({ command }) => {
           },
         },
       },
-      outDir: '../dist',
-      emptyOutDir: true,
     },
     plugins: [
       injectHTML(),
-      FullReload(['./src/**/**.html']),
+      FullReload(['./src/**/*.html']),
       SortCss({
         sort: 'mobile-first',
       }),
