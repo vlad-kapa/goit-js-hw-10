@@ -22,6 +22,7 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   margin: 0;
+  background-color: rgb(123, 170, 128);
 }
 
 main {
